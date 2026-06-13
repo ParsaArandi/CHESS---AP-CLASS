@@ -31,6 +31,17 @@ class King extends Piece {
         int colDiff = Math.abs(toCol - fromCol);
 
         if (rowDiff <= 1 && colDiff <= 1) {
+
+            for (int r = 0; r < 8; r++) {
+                for (int c = 0; c < 8; c++) {
+                    Piece p = board.getPiece(r, c);
+                    if (p instanceof King && p.isWhite() != white) {
+                        if (Math.abs(toRow - r) <= 1 && Math.abs(toCol - c) <= 1) {
+                            return false;
+                        }
+                    }
+                }
+            }
             return true;
         }
 
